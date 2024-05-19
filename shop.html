@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Jost:ital,wght@0,100..900;1,100..900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url("bg.jpg");
+            background-size: cover; 
+            margin: 0;
+            font-family: 'Cormorant Garamond', serif; 
+            min-height: 100vh; 
+            position: relative; 
+        }
+        header {
+            background-color: #FB6F92;
+            padding: 10px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: right;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        nav ul li a:hover {
+            background-color: #FF8FAB;
+        }
+
+        .logo {
+            color: #fff; 
+            font-size: 30px;
+            font-weight: bold;
+            margin: 0 0 0 20px;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.4); 
+        }   
+
+        .container {
+            width: 90%;
+            margin: auto;
+            overflow: hidden;
+            background-color: rgba(255, 255, 255, 0.8); 
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .product {
+            float: left;
+            width: 30%;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            text-align: center;
+            background-color: #FFC2D1; 
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+        }
+
+        .product img {
+            width: 100%;
+            height: auto;
+        }
+
+        .product h3 {
+            color: #f51178; 
+            font-size: 20px;
+            font-family: 'Jost', sans-serif;; 
+        }
+
+        .product p {
+            color: #777; 
+            font-family: 'Jost', sans-serif; 
+        }
+
+        .product button {
+            background-color: #fe68ae; 
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s; 
+        }
+
+        .product button:hover {
+            background-color: #3ca9e2; 
+        }
+
+        .product input[type="number"] {
+            width: 50px; 
+            padding: 5px;
+            text-align: center; 
+        }
+
+        .section-container {
+            margin-top: 40px; 
+        }
+
+        .section-title {
+			font-family: 'Jost', sans-serif;
+            text-align: center;
+            color: #fd1783; 
+            font-size: 40px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(217, 1, 102, 0.2); 
+        }
+
+        .section-products {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        @media (max-width: 768px) {
+            .section-products {
+                flex-direction: column;
+            }
+        }
+
+        .cart-modal {
+            display: none; 
+            position: fixed; 
+            z-index: 9999; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.5); 
+        }
+
+        .cart-content {
+			background-color: #FFDBE0;
+			font-family: 'Jost', sans-serif; 
+			margin: 10% auto; 
+			padding: 20px;
+			border: 1px solid #888;
+			width: 500px;
+			max-width: 500px; 
+			border-radius: 10px;
+			position: relative;
+			box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); 
+		}
+
+        .cart-content h2 {
+            text-align: center;
+            color: #fd1783; 
+            font-size: 30px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(217, 1, 102, 0.2); 
+        }
+
+        .cart-content p {
+            text-align: right;
+            font-weight: bold;
+            color: #333; 
+            font-size: 18px;
+        }
+
+        .cart-content button {
+            display: block;
+            background-color: #fe68ae; 
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s; 
+            margin: 20px auto;
+        }
+
+        .cart-content button:hover {
+            background-color: #3ca9e2; 
+        }
+
+        .close {
+            font-size: 30px;
+            color: #333; 
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            z-index: 9999;
+        }
+
+        #cart-items {
+            max-height: 200px; 
+            overflow-y: auto; 
+            margin-bottom: 20px; 
+        }
+
+        #cart-items div {
+            background-color: #FFC2D1;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+        }
+
+        #checkout-form {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #checkout-form h3 {
+            text-align: center;
+            color: #fd1783; 
+            font-size: 25px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(217, 1, 102, 0.2); 
+        }
+
+        #checkout-form label {
+            display: block;
+			font-family: Arial;
+            font-weight: bold;
+            color: #ff1294; 
+            margin-bottom: 5px;
+        }
+
+        #checkout-form input[type="text"] {
+            width: 470px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #checkout-form button {
+            display: block;
+            background-color: #fe68ae; 
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s; 
+            margin: 20px auto;
+        }
+
+        #checkout-form button:hover {
+            background-color: #3ca9e2; 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="shop-name">
+                <h1 class="logo">PoutPerfection Outlet</h1>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="About.html">About Us</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+                <li><a href="#" id="cart-btn"><i class="fas fa-shopping-cart"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">Lip Gloss</h2>
+        <div class="section-products">
+            <div class="product">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI1EHjvSiLrnvbwhsMW1WnAqWR7OeUGgf9nC_voafo4zn0UMdre0ig4aIJunlructrJ5I&usqp=CAU" alt="nudebrown">
+                <h3>PoutPerfection Gloss in Cocoa Kiss</h3>
+                <p>PHP 349</p>
+                <input type="number" min="1" value="1">
+                <button onclick="addToCart('Cocoa Kiss', 349)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0DJOAmxlw-SReaT8KEb8VZyZH7i-CCdFHL6Ajv8nbfwoGLM3d3Nu4ZvhnA5jKeePcbZY&usqp=CAU" alt="Love Boat">
+                <h3>PoutPerfection Gloss in Petal Pout</h3>
+                <p>PHP 349</p>
+                <input type="number" min="1" value="1">
+                <button onclick="addToCart('Petal Pout', 349)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSY99fhKu9GUE0wGy3fMwztkXqNfde99W8ckDQuGzPIirVQvBH7FFrh1hMey4HXLZs9tA8&usqp=CAU" alt="Oh Wow">
+                <h3>PoutPerfection Gloss in Berry Blush</h3>
+                <p>PHP 349</p>
+                <input type="number" min="1" value="1">
+                <button onclick="addToCart('Berry Blush', 349)">Add to Cart</button>
+            </div>
+        </div>
+
+        <h2 class="section-title">Lipstick</h2>
+        <div class="section-products">
+            <div class="product">
+                <img src="https://media.istockphoto.com/id/1474041370/photo/open-lipstick-in-a-black-case-on-a-white-background.jpg?s=1024x1024&w=is&k=20&c=CwwlSU-SRY6CMa2VLF9qQv7P22lkF5AObxNktK38DEc=" alt="Lipstick 3">
+                <h3>PoutPerfection Satin Lip in Violet Vixen</h3>
+                <p>PHP 479</p>
+                <input type="number" min="1" value="1">
+                <button onclick="addToCart('Violet Vixen', 479)">Add to Cart</button>
+            </div>
+            <div class="product">
+               <img src="https://media.istockphoto.com/id/1261596090/photo/red-lipstick-isolated-on-white-background.jpg?s=1024x1024&w=is&k=20&c=poWE-zKbO0OvL9UBHnfISsO2yprUVAE3Sg8YrHb5wJY=" alt="Lipstick 2">
+                <h3>PoutPerfection Satin Lip in Tangerine Tango</h3>
+                <p>PHP 479</p>
+                <input type="number" min="1" value="1">
+                <button onclick="addToCart('Tangerine Tango', 479)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="https://media.istockphoto.com/id/1434084310/photo/red-lipstick.jpg?s=1024x1024&w=is&k=20&c=D1I9Q2dlurzRz597xlibjQZTlUtT68xSZ8kApiKMhYY=" alt="Lipstick 1">
+                <h3>PoutPerfection Satin Lip in Cherry Bombshell</h3>
+                <p>PHP 479</p>
+                <input type="number" min="1" value="1">
+                <button onclick="addToCart('Cherry Bombshell', 479)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-content">
+            <span class="close">&times;</span>
+            <h2>Shopping Cart</h2>
+            <div id="cart-items"></div>
+            <p>Total: <span id="cart-total">PHP 0.00</span></p>
+            <button id="checkout-btn">Checkout</button>
+            <form id="checkout-form" style="display: none;">
+                <h3>Customer's Info</h3>
+                <label for="name">Name:</label>
+                <input type="text" id="name" required>
+                <label for="address">Address:</label>
+                <input type="text" id="address" required>
+                <label for="contact">Contact Number:</label>
+                <input type="text" id="contact" required>
+                <button type="submit">Place Order</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const cartBtn = document.getElementById('cart-btn');
+            const cartModal = document.getElementById('cart-modal');
+            const closeBtn = document.getElementsByClassName('close')[0];
+            const checkoutBtn = document.getElementById('checkout-btn');
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const checkoutForm = document.getElementById('checkout-form');
+
+            cartBtn.addEventListener('click', showCartModal);
+            closeBtn.addEventListener('click', hideCartModal);
+            checkoutBtn.addEventListener('click', showCheckoutForm);
+            checkoutForm.addEventListener('submit', handleCheckout);
+
+            function showCartModal() {
+                cartModal.style.display = 'block';
+                updateCart();
+            }
+
+            function hideCartModal() {
+                cartModal.style.display = 'none';
+                checkoutForm.style.display = 'none';
+            }
+
+            function showCheckoutForm() {
+                checkoutForm.style.display = 'block';
+            }
+			
+			function showCheckoutForm() {
+				const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+				if (cartItems.length === 0) {
+					alert('There is no items in the cart. Please add items before checking out.');
+				} else {
+					checkoutForm.style.display = 'block';
+				}
+			}
+
+            function handleCheckout(event) {
+				event.preventDefault();
+
+				const name = document.getElementById('name').value;
+				const address = document.getElementById('address').value;
+				const contact = document.getElementById('contact').value;
+
+				if (!name || !address || !contact) {
+					alert('Please fill in all fields.');
+					return;
+				}
+
+				const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+				let orderDetails = '';
+				let total = 0;
+
+				cartItems.forEach(item => {
+					orderDetails += `${item.name} - PHP ${item.price} x ${item.quantity}\n`;
+					total += item.price * item.quantity;
+				});
+
+				const confirmationMessage = `\n Your order is confirmed! Thank you for your shopping with us!\n\nYour order details:\n${orderDetails}\nTotal: PHP ${total.toFixed(2)}\n\nYour order will be shipped to ${address}.`;
+
+				alert(confirmationMessage);
+
+				localStorage.removeItem('cart');
+				updateCart();
+				hideCartModal();
+			}
+
+            function updateCart() {
+                cartItemsContainer.innerHTML = '';
+                const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+                let total = 0;
+
+                cartItems.forEach(item => {
+                    const div = document.createElement('div');
+                    div.innerHTML = `${item.name} - PHP ${item.price} x ${item.quantity}`;
+                    cartItemsContainer.appendChild(div);
+                    total += item.price * item.quantity;
+                });
+
+                cartTotal.textContent = 'PHP ' + total.toFixed(2);
+            }
+
+            window.addToCart = function(name, price) {
+                const quantityInput = event.target.previousElementSibling;
+                let quantity = parseInt(quantityInput.value);
+
+                if (isNaN(quantity) || quantity <= 0) {
+                    alert("Please enter a valid quantity.");
+                    return;
+                }
+
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                let existingItem = cart.find(item => item.name === name);
+
+                if (existingItem) {
+                    existingItem.quantity += quantity;
+                } else {
+                    cart.push({ name: name, price: price, quantity: quantity });
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCart();
+                showNotification(`${quantity} ${name} added to cart`);
+                quantityInput.value = 1; 
+            };
+
+            function showNotification(message) {
+                const notification = document.createElement('div');
+                notification.classList.add('notification');
+                notification.textContent = message;
+                document.body.appendChild(notification);
+
+                setTimeout(() => {
+                    notification.remove();
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Jost:ital,wght@0,100..900;1,100..900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            outline: none;
+            box-sizing: border-box;
+            font-family: 'Cormorant Garamond', serif; 
+        }
+        body {
+            background: linear-gradient(to right, #FFD1DC, #FFAFBD, #84F3F8);
+            background-size: cover; 
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            min-height: 100vh; 
+            position: relative; 
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            padding: 20px 40px 10px;
+            box-shadow: 0px 0px 10px 3px #fff;
+            border-radius: 12px;
+            background-color: rgba(255, 255, 255, 0.5); 
+            margin: 50px auto 0; 
+        }
+
+
+        .Contact-Pout {
+            text-align: center;
+            font-size: 41px;
+            font-weight: bold;
+            background: -webkit-linear-gradient(right, #F1DFDC, #FE036A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            font-family: 'Jost', sans-serif; 
+        }
+
+        form .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .input-data {
+            width: calc(50% - 10px);
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-data input, 
+        .input-data textarea {
+            width: 100%;
+            height: 40px;
+            border: none;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.12);
+            background-color: transparent;
+            font-size: 17px;
+            transition: border-color 0.3s ease;
+            font-family: 'Jost', sans-serif;
+        }
+
+        .input-data input:focus,
+        .input-data textarea:focus {
+            border-color: #FE036A;
+        }
+
+        .input-data label {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            color: #333;
+            pointer-events: none;
+            font-family: 'Jost', sans-serif;
+        }
+
+        .input-data input:focus ~ label,
+        .input-data textarea:focus ~ label,
+        .input-data input:valid ~ label,
+        .input-data textarea:valid ~ label {
+            transform: translateY(-30px); 
+            font-size: 14px;
+            color: #FE036A;
+        }
+
+        .input-data.email input[type="email"]:focus ~ label,
+        .input-data.email input[type="email"]:valid ~ label {
+            transform: translateY(-30px);
+            font-size: 14px;
+            color: #FE036A;
+        }
+
+        .submit-btn {
+            text-align: center;
+            
+        }
+
+        .submit-btn input[type="submit"] {
+            background-color: #fe68ae;
+            font-size: 15px;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-family: 'Jost', sans-serif;
+        }
+
+        .submit-btn input[type="submit"]:hover {
+            background-color: #3ca9e2;
+        }
+
+        header {
+            background-color: #FB6F92;
+            padding: 10px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: right;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        nav ul li a:hover {
+            background-color: #FF8FAB;
+        }
+
+        
+        .logo {
+            color: #fff; 
+            font-size: 30px;
+            font-weight: bold;
+            margin: 0 0 0 20px;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.4); 
+        }
+
+        .contact-info {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center; 
+			font-family: 'Jost', sans-serif;
+        }
+
+        .contact-info span {
+            margin-right: 10px;
+			font-family: 'Jost', sans-serif;
+			font-size: 15px;
+        }
+
+        .contact-info p{
+            margin-bottom: 10px;
+            color: #FE036A;
+			font-family: 'Jost', sans-serif;
+			font-weight: bold;
+			font-size: 20px;
+			
+        }
+
+        .contact-info a {
+            text-decoration: none;
+            color: #333;
+            transition: color 0.3s ease;
+			font-family: 'Jost', sans-serif;
+			font-size: 15px;
+        }
+
+        .contact-info a:hover {
+            color: #FE036A;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            font-size: 20px;
+            color: #FE036A;
+        }
+
+        .form-row {
+            align-items: flex-start; 
+        }
+
+        .input-data.textarea {
+            width: 100%; 
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="shop-name">
+                <h1 class="logo">PoutPerfection Outlet</h1>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="About.html">About Us</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <h1 class="Contact-Pout">Contact Us Form</h1>
+        <form action="#">
+            <div class="form-row">
+                <div class="input-data">
+                    <input type="text" required />
+                    <div class="underline"></div>
+                    <label for="">First Name</label>
+                </div>
+                <div class="input-data">
+                    <input type="text" required />
+                    <div class="underline"></div>
+                    <label for="">Last Name</label>
+                </div>
+                <div class="input-data">
+                    <input type="email" required />
+                    <div class="underline"></div>
+                    <label for="">Email Address</label>
+                </div>
+                <div class="input-data">
+                    <input type="text" required />
+                    <div class="underline"></div>
+                    <label for="">Contact Number</label>
+                </div>  
+            </div>
+            <div class="form-row">
+                <div class="input-data textarea">
+                    <textarea rows="8" cols="80" required></textarea>
+                    <br>
+                    <div class="underline"></div>
+                    <label for="">Write your message</label>
+                </div>
+            </div>
+            <div class="submit-btn">
+                <input type="submit" value="Submit"/>
+            </div>
+        </form> 
+    </div>
+		<div class="contact-info">
+			<p>Contact Information</p>
+			<i class="ri-mail-fill"></i>
+			<span><a href="mailto:darlenevino@gmail.com">poutperfection@gmail.com</a></span>
+			<i class="ri-facebook-box-fill"></i>
+			<span><a href="https://www.facebook.com/vdarlenee?mibextid=uzlsIk">PoutPerfection Outlet</a></span>
+			<i class="ri-instagram-fill"></i>
+			<span><a href="https://www.instagram.com/vmdarlene/?fbclid=IwZXh0bgNhZW0CMTAAAR1tb4MMBMtgpiHr6xqXQKsvUKOWSd-0gY7NIH1lYBjfvAuO53EE09Gh3eE_aem_AYFCDzFI8rC3jS_Z5waWztj0HnEZxyECkGfN2-mdMEO2M1SEOqUitgFb1EdvgEVVc0dNPZe4gtnwav0jjT7sbGuj">PoutPerfectionOutlet</span>
+			<i class="ri-phone-fill"></i>
+			<span>+6312456746</span>
+		</div>
+    <script>
+        document.querySelector('.submit-btn input[type="submit"]').addEventListener('click', function() {
+            alert('Thank you for messaging us');
+        });
+    </script>
+</body>
+</html>
